@@ -4,13 +4,13 @@ START=99
 
 start() {
     rm -f /data/.ugreen_nas/conf/ssh_tag
-    for num in $(seq 1 5); do
+    for num in $(seq 1 60); do
         if [ "$(pgrep -c nas_svr)" -gt 0 ]; then
             if [ "$(netstat -lnpt | grep -c 9996)" -gt 0 ]; then
                 break
             fi
         fi
-        sleep 2
+        sleep 1
     done
     echo "root:123456" | chpasswd -m
     /etc/sshd restart
